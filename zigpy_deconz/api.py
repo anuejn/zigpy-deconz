@@ -309,8 +309,8 @@ class Deconz:
                 self._awaiting.pop(seq)
                 raise
             finally:
-                await asyncio.sleep(0.5)
-                LOGGER.debug("sleeping 0.5s for rate limiting")
+                # await asyncio.sleep(0.5)
+                LOGGER.debug("not sleeping 0.5s for rate limiting")
                 
 
     def _api_frame(self, cmd, *args):
