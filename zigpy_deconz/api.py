@@ -308,9 +308,6 @@ class Deconz:
                 )
                 self._awaiting.pop(seq)
                 raise
-            finally:
-                await asyncio.sleep(0.05)
-                LOGGER.debug("sleeping 0.05s for rate limiting")
                 
 
     def _api_frame(self, cmd, *args):
@@ -493,7 +490,7 @@ class Deconz:
     ):
         dst = dst_addr_ep.serialize()
         length = len(dst) + len(aps_payload) + 11
-        delays = (0.5, 1.0, 1.5, 2.0, 2.5, 3.0, None)
+        delays = (0.5, 1.0, 1.5, 1.5, 1.5, 1.5, None)
         for delay in delays:
             try:
                 return await self._command(
