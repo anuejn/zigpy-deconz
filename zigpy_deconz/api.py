@@ -295,7 +295,7 @@ class Deconz:
             # connection was lost
             raise CommandError(Status.ERROR, "API is not running")
         async with self._command_lock:
-            LOGGER.debug("Command %s %s", cmd, args)
+            LOGGER.debug("Command (with patched zigpy_deconz) %s %s", cmd, args)
             data, seq = self._api_frame(cmd, *args)
             self._uart.send(data)
             fut = asyncio.Future()
