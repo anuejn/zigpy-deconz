@@ -307,7 +307,7 @@ class Deconz:
                     "No response to '%s' command with seq id '0x%02x'", cmd, seq
                 )
                 self._awaiting.pop(seq)
-                raise
+                raise RuntimeError("lol")
                 
 
     def _api_frame(self, cmd, *args):
@@ -512,7 +512,7 @@ class Deconz:
                     LOGGER.debug("retrying 'aps_data_request' in %ss", delay)
                     await asyncio.sleep(delay)
                     continue
-                raise
+                raise RuntimeError("lol2")
 
     def _handle_aps_data_request(self, data):
         LOGGER.debug("APS data request response: %s", data)
