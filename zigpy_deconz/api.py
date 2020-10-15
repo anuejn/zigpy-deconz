@@ -17,7 +17,7 @@ import zigpy_deconz.uart
 
 LOGGER = logging.getLogger(__name__)
 
-COMMAND_TIMEOUT = 1.8
+COMMAND_TIMEOUT = 5
 PROBE_TIMEOUT = 2
 MIN_PROTO_VERSION = 0x010B
 
@@ -489,7 +489,7 @@ class Deconz:
     ):
         dst = dst_addr_ep.serialize()
         length = len(dst) + len(aps_payload) + 11
-        delays = (0.5, 1.0, 1.5, None)
+        delays = (0.5, 1.0, 1.5, 2.0, 2.5, 3.0, None)
         for delay in delays:
             try:
                 return await self._command(
