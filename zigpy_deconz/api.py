@@ -17,7 +17,7 @@ import zigpy_deconz.uart
 
 LOGGER = logging.getLogger(__name__)
 
-COMMAND_TIMEOUT = 5
+COMMAND_TIMEOUT = 10
 PROBE_TIMEOUT = 2
 MIN_PROTO_VERSION = 0x010B
 
@@ -309,8 +309,8 @@ class Deconz:
                 self._awaiting.pop(seq)
                 raise
             finally:
-                # await asyncio.sleep(0.5)
-                LOGGER.debug("not sleeping 0.5s for rate limiting")
+                await asyncio.sleep(0.05)
+                LOGGER.debug("sleeping 0.05s for rate limiting")
                 
 
     def _api_frame(self, cmd, *args):
